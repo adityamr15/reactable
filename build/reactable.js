@@ -21,10 +21,23 @@ window.ReactDOM["default"] = window.ReactDOM;
         columns: true,
         sortable: true,
         filterable: true,
+        filtering: true,
+        onFilter: true,
+        filterPlaceholder: true,
         filterClassName: true,
+        currentFilter: true,
+        sort: true,
         sortBy: true,
+        sortableColumns: true,
+        onSort: true,
         defaultSort: true,
+        defaultSortDescending: true,
         itemsPerPage: true,
+        filterBy: true,
+        hideFilterInput: true,
+        noDataText: true,
+        currentPage: true,
+        pageButtonLimit: true,
         childNode: true,
         data: true,
         children: true
@@ -407,8 +420,6 @@ window.ReactDOM["default"] = window.ReactDOM;
 })(this, function (exports, _react, _libIs_react_component, _libStringable, _unsafe, _libFilter_props_from) {
     'use strict';
 
-    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
     var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
     var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
@@ -456,12 +467,12 @@ window.ReactDOM["default"] = window.ReactDOM;
                 }
 
                 if ((0, _unsafe.isUnsafe)(this.props.children)) {
-                    return _react['default'].createElement('td', _extends({}, mergedProps, {
-                        dangerouslySetInnerHTML: { __html: this.props.children.toString() } }));
+                    return _react['default'].createElement('td', { className: mergedProps.className,
+                        dangerouslySetInnerHTML: { __html: this.props.children.toString() } });
                 } else {
                     return _react['default'].createElement(
                         'td',
-                        mergedProps,
+                        { className: mergedProps.className, 'data-title': mergedProps['data-title'] },
                         stringifiedChildProps || this.props.children
                     );
                 }
@@ -713,7 +724,7 @@ window.ReactDOM["default"] = window.ReactDOM;
 
                 return _react['default'].createElement(
                     'thead',
-                    props,
+                    null,
                     this.props.filtering === true ? _react['default'].createElement(_filterer.Filterer, {
                         colSpan: this.props.columns.length,
                         onFilter: this.props.onFilter,
@@ -1506,7 +1517,7 @@ window.ReactDOM["default"] = window.ReactDOM;
                 }
                 return _react['default'].createElement(
                     'table',
-                    props,
+                    { className: this.props.className },
                     tableHeader,
                     _react['default'].createElement(
                         'tbody',

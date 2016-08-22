@@ -35,7 +35,7 @@ export class Td extends React.Component {
             return <td className={mergedProps.className}
                 dangerouslySetInnerHTML={{__html: this.props.children.toString()}}/>
         } else {
-          return <td className={mergedProps.className}>
+          return <td className={mergedProps.className} data-title={mergedProps['data-title']}>
                 {stringifiedChildProps || this.props.children}
             </td>;
         }
